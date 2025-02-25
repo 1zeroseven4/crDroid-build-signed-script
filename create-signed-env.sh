@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # Prompt the user for each part of the subject line
-read -p "Enter country code 'US' (C): " country
-read -p "Enter state or province name 'California' (ST): " state
-read -p "Enter locality 'Los Angeles' (L): " locality
-read -p "Enter organization name 'crDroid' (O): " organization
-read -p "Enter organizational unit 'crDroid' (OU): " organizational_unit
-read -p "Enter common name 'crdroid' (CN): " common_name
-read -p "Enter email address 'android@android.com' (emailAddress): " email
+read -p "Enter country code 'PH' (C): " country
+read -p "Enter state or province name 'DDN' (ST): " state
+read -p "Enter locality 'Tagum' (L): " locality
+read -p "Enter organization name 'AlphaOS' (O): " organization
+read -p "Enter organizational unit 'AlphaOS' (OU): " organizational_unit
+read -p "Enter common name 'AlphaOS' (CN): " common_name
+read -p "Enter email address 'alpha@android.com' (emailAddress): " email
 
 # Construct the subject line
 subject="/C=${country}/ST=${state}/L=${locality}/O=${organization}/OU=${organizational_unit}/CN=${common_name}/emailAddress=${email}"
@@ -37,10 +37,10 @@ done
 
 
 ## Create vendor for keys
-mkdir -p vendor/lineage-priv
-mv ~/.android-certs vendor/lineage-priv/keys
-echo "PRODUCT_DEFAULT_DEV_CERTIFICATE := vendor/lineage-priv/keys/releasekey" > vendor/lineage-priv/keys/keys.mk
-cat <<EOF > vendor/lineage-priv/keys/BUILD.bazel
+mkdir -p vendor/alpha-priv
+mv ~/.android-certs vendor/alpha-priv/keys
+echo "PRODUCT_DEFAULT_DEV_CERTIFICATE := vendor/alpha-priv/keys/releasekey" > vendor/alpha-priv/keys/keys.mk
+cat <<EOF > vendor/alpha-priv/keys/BUILD.bazel
 filegroup(
     name = "android_certificate_directory",
     srcs = glob([
@@ -51,6 +51,6 @@ filegroup(
 )
 EOF
 
-echo "Done! Now build as usual. If builds aren't being signed, add '-include vendor/lineage-priv/keys/keys.mk' to your device mk file"
-echo "Make copies of your vendor/lineage-priv folder as it contains your keys!"
+echo "Done! Now build as usual. If builds aren't being signed, add '-include vendor/alpha-priv/keys/keys.mk' to your device mk file"
+echo "Make copies of your vendor/alpha-priv folder as it contains your keys!"
 sleep 3
